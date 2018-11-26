@@ -151,13 +151,13 @@ function updateAndRender() {
 
     groundGeometry.render(camera, projectionMatrix, textureShaderProgram);
 
-    // todo - enable blending
-    // todo - set blend mode source to gl.SRC_ALPHA and destination to gl.ONE_MINUS_SRC_ALPHA
-    // todo - disable writing of objects to the depth buffer (depthMask) (future renders will ignore previous ones)
+    gl.enable(gl.BLEND); // todo - enable blending
+    gl.blendFunc(gl.SRC_ALPHA , gl.ONE_MINUS_SRC_ALPHA); // todo - set blend mode source to gl.SRC_ALPHA and destination to gl.ONE_MINUS_SRC_ALPHA
+    gl.depthMask(false);// todo - disable writing of objects to the depth buffer (depthMask) (future renders will ignore previous ones)
 
     for (var i = 0; i < sphereGeometryList.length; ++i) {
          sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
      }
 
-    // todo - return to previous state (disable blending and turn depth writing back on)
+     gl.depthMask(true);// todo - return to previous state (disable blending and turn depth writing back on)
 }
