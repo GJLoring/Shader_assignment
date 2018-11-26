@@ -46,7 +46,10 @@ function initGL(canvas) {
         gl.canvasHeight = canvas.height;
 
         // todo enable depth test (z-buffering)
+        gl.enable(gl.DEPTH_TEST);
         // todo enable backface culling
+        gl.enable(gl.CULL_FACE);
+        gl.cullFace(gl.BACK);
     } catch (e) {}
 
     if (!gl) {
