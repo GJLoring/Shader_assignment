@@ -152,9 +152,9 @@ function updateAndRender() {
     // todo - set blend mode source to gl.SRC_ALPHA and destination to gl.ONE_MINUS_SRC_ALPHA
     // todo - disable writing of objects to the depth buffer (depthMask) (future renders will ignore previous ones)
 
-    // for (var i = 0; i < sphereGeometryList.length; ++i) {
-    //     sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
-    // }
+    for (var i = 0; i < sphereGeometryList.length; ++i) {
+         sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
+     }
 
     // todo - return to previous state (disable blending and turn depth writing back on)
 }
