@@ -1,6 +1,7 @@
 function OrbitCamera(input) {
     this.cameraWorldMatrix = new Matrix4();
     this.cameraTarget = new Vector3();
+    this.position  = new Vector3(); // For todo 9, painter algo     
     this.yawDegrees = 0;
     this.pitchDegrees = -45;
     this.minDistance = 1;
@@ -52,8 +53,8 @@ function OrbitCamera(input) {
 
         var fromTargetToCamera = this.cameraTarget.clone().add(tether);
 
-        var position = this.cameraTarget.clone().add(fromTargetToCamera);
-        this.cameraWorldMatrix.setLookAt(position, new Vector3(), new Vector3(0, 1, 0));
+        this.position = this.cameraTarget.clone().add(fromTargetToCamera);
+        this.cameraWorldMatrix.setLookAt(this.position, new Vector3(), new Vector3(0, 1, 0));
     }
 
     // -------------------------------------------------------------------------
