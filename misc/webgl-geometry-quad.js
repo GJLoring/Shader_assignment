@@ -50,14 +50,14 @@ function WebGLGeometryQuad(gl) {
         if (rawImage) {
             this.texture = this.gl.createTexture();
 
-            // todo bind the texture
-
+            this.gl.bindTexture(gl.TEXTURE_2D, this.texture ); // todo bind the texture
+            
             // needed for the way browsers load images, ignore this
             this.gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
 
             // todo set wrap modes (for s and t) for the texture
-            // todo set filtering modes (magnification and minification) 
-            // send the image WebGL to use as this texture
+            this.gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); // todo set filtering modes (magnification and minification) (book p186?)
+            this.gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, rawImage ); // send the image WebGL to use as this texture
 
             this.gl.bindTexture(gl.TEXTURE_2D, null);
         }
