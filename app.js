@@ -148,7 +148,7 @@ function updateAndRender() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     projectionMatrix.setPerspective(45, aspectRatio, 0.1, 1000);
-   
+
     // For todo 9, painter algo, set camera psition to be obj variable in camera controller
     // Sort here back to front
     for (var bs = 0; bs < sphereGeometryList.length; ++bs) { // Bubble sort shperes by distance
@@ -156,14 +156,14 @@ function updateAndRender() {
             var x = camera.position.clone();
             x.subtract(sphereGeometryList[i].worldMatrix);
             var y = camera.position.clone();
-            y.subtract(sphereGeometryList[i+1].worldMatrix);            
-            if(y < x){  // Second sphere is closer then first, so swap them so they draw back to front
+            y.subtract(sphereGeometryList[i+1].worldMatrix);
+            if(y.length < x.length){  // Second sphere is closer then first, so swap them so they draw back to front
                 var tmpSphereGeometry = sphereGeometryList[i+1];
                 sphereGeometryList[i+1] = sphereGeometryList[i];
                 sphereGeometryList[i] = tmpSphereGeometry;
             }
         }
-    }      
+    }
 
     groundGeometry.render(camera, projectionMatrix, textureShaderProgram);
 
@@ -174,7 +174,7 @@ function updateAndRender() {
     for (var i = 0; i < sphereGeometryList.length; ++i) {
          sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
      }
-    
+
     gl.disable(gl.BLEND);//blending disabled
     gl.depthMask(true);// todo - return to previous state (disable blending and turn depth writing back on)
 }
