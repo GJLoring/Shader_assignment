@@ -174,6 +174,7 @@ function updateAndRender() {
     for (var i = 0; i < sphereGeometryList.length; ++i) {
          sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
      }
-
-     gl.depthMask(true);// todo - return to previous state (disable blending and turn depth writing back on)
+    
+    gl.disable(gl.BLEND);//blending disabled
+    gl.depthMask(true);// todo - return to previous state (disable blending and turn depth writing back on)
 }
